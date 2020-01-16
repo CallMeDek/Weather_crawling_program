@@ -1,0 +1,6 @@
+host=
+port=포트번호
+user=DB유저이름
+passwd=DB비밀번호
+db=DB이름
+charset=utf8

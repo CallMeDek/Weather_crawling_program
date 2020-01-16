@@ -1,0 +1,6 @@
+host=localhost
+port=포트번호
+user=
+passwd=DB비밀번호
+db=DB이름
+charset=utf8
