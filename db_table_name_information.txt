@@ -1,3 +1,2 @@
-강동동=busan_gangdong_dong
-명지동=busan_myungji_dong
-대저2동=busan_daejer2_dong
+역삼동=Yeok_sam_dong
+방배동=Bang_bae_dong
