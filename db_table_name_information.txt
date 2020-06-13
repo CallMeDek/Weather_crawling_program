@@ -1,2 +1,3 @@
-역삼동=Yeoksam
-방배동=Bangbae
+강동동=busan_gangdong_dong
+명지동=busan_myungji_dong
+대저2동=busan_daejer2_dong

@@ -1,6 +1,8 @@
 from Database_login import LoginInformation
 from Crawaling_information import WeatherInformationCralwer
+from apscheduler.schedulers.background import BackgroundScheduler
 import pymysql
+import time
 import sys
 
 
@@ -54,17 +56,18 @@ class DatabaseSave:
                 print("Some information in the table_name information file are missing. Please check.")
                 sys.exit(0)
                 
-                
         def _convert_into_valid_form(value_dict):
             for area in value_dict.keys():
-                for key, value in value_dict[area].items():
+                for i, (key, value) in enumerate(value_dict[area].items()):
                     if value is None:
-                        value_dict[area][key] = 'NULL'
+                        if i in [0, 1, 2, 3, 5, 6, 7, 8, 9, 12, 14, 16]:
+                            value_dict[area][key] = 'NULL'
+                        else:
+                            value_dict[area][key] = ''
+                        continue
                     try:
                         value_dict[area][key] = float(value)
                     except ValueError as e:
-                        continue
-                    except TypeError as e:
                         continue
             return value_dict
                 
@@ -100,4 +103,8 @@ class DatabaseSave:
                 
 if __name__ == "__main__":
     save = DatabaseSave()
-    save.main()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(save.main, 'interval', minutes=15, start_date="2020-06-13 12:00:00")
+    scheduler.start()
+    while True:
+        time.sleep(0.3)
